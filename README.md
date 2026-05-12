@@ -1,154 +1,138 @@
-# Telegram Saved Vault
+<div align="center">
+  <img src="https://img.shields.io/badge/Telegram-Saved%20Vault-229ED9?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram Saved Vault">
+  <h1>Telegram Saved Vault</h1>
+  
+  <p>
+    <strong>A clean, modern & private personal cloud</strong><br>
+    Built on <strong>Your Own Telegram Saved Messages</strong>
+  </p>
 
-A clean, modern, dark-themed personal cloud built on **your own Telegram Saved Messages**.
-Powered by **FastAPI + Telethon** (backend) and **React + Vite + TailwindCSS + shadcn/ui** (frontend).
+  <p>
+    <a href="https://github.com/yourusername/telegram-saved-vault/stargazers">
+      <img src="https://img.shields.io/github/stars/yourusername/telegram-saved-vault?style=flat-square&logo=github" alt="Stars">
+    </a>
+    <a href="https://github.com/yourusername/telegram-saved-vault/issues">
+      <img src="https://img.shields.io/github/issues/yourusername/telegram-saved-vault?style=flat-square" alt="Issues">
+    </a>
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License">
+    <img src="https://img.shields.io/badge/Tech-React%20%2B%20FastAPI-61DAFB?style=flat-square" alt="Tech Stack">
+  </p>
 
-> Your Saved Messages chat (`peer='me'`) becomes your private database — notes, snippets, anything text.
+  <img src="https://raw.githubusercontent.com/yourusername/telegram-saved-vault/main/screenshot.png" 
+       alt="Telegram Saved Vault Preview" width="85%" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+
+  <br><br>
+  <strong>Powered by FastAPI + Telethon (Backend) • React + Vite + Tailwind + shadcn/ui (Frontend)</strong>
+</div>
 
 ---
 
 ## ✨ Features
 
-- 🔐 Login with your own `API_ID`, `API_HASH`, phone, optional 2FA
-- 📲 Handles SMS / Telegram code prompts properly
-- 📝 Save raw text notes (with `#tags`) directly to **Saved Messages**
-- 📜 List, search, view, delete messages — all live from Telegram
-- 📊 Stats overview
-- 🌙 Soft, premium dark UI (shadcn/ui + Tailwind)
-- 🧰 Per-user Telethon session files stored on the backend
-- 🚪 Logout clears the session
+<div align="center">
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![Telethon](https://img.shields.io/badge/Telethon-229ED9?logo=telegram&logoColor=white)
+
+</div>
+
+- 🔐 **Secure Login** with your own Telegram API credentials
+- 📲 Full support for SMS code + 2FA prompts
+- 📝 Save notes, snippets, links, and `#tags` directly to Saved Messages
+- 🔍 Real-time **Search**, filter, and organize
+- 📊 Beautiful **Stats Dashboard**
+- 🌙 Premium dark UI with smooth animations (shadcn/ui)
+- 🧩 Persistent Telethon sessions per user
+- 🚪 One-click logout
 
 ---
 
-## 🗂 Project structure
+## 📸 Preview
 
-```
+> (Add GIF or multiple screenshots here)
+
+```html
+<!-- You can embed a GIF like this -->
+<img src="https://raw.githubusercontent.com/yourusername/telegram-saved-vault/main/demo.gif" 
+     alt="Demo" style="border-radius: 12px; width: 100%; max-width: 800px;">
+🗂 Project Structure
 telegram-saved-vault/
 ├── backend/
-│   ├── main.py              # FastAPI app + all endpoints
-│   ├── telegram_manager.py  # Telethon wrapper (login, CRUD on Saved Messages)
-│   ├── models.py            # Pydantic models
+│   ├── main.py                 # FastAPI application
+│   ├── telegram_manager.py     # Telethon core logic
+│   ├── models.py               # Pydantic schemas
 │   ├── requirements.txt
-│   ├── .env.example
-│   └── sessions/            # Telethon .session files (gitignored)
+│   └── sessions/               # .session files (gitignored)
+│
 └── frontend/
-    ├── index.html
-    ├── package.json
-    ├── vite.config.ts
+    ├── src/
+    │   ├── pages/              # Login + Dashboard
+    │   ├── components/ui/      # shadcn/ui components
+    │   ├── hooks/
+    │   └── lib/api.ts
     ├── tailwind.config.js
-    ├── postcss.config.js
-    ├── tsconfig.json
-    └── src/
-        ├── main.tsx
-        ├── App.tsx
-        ├── index.css
-        ├── lib/
-        │   ├── api.ts        # axios client
-        │   └── utils.ts
-        ├── pages/
-        │   ├── Login.tsx
-        │   └── Dashboard.tsx
-        ├── hooks/
-        │   └── useAuth.ts
-        └── components/ui/    # shadcn/ui primitives
-```
-
----
-
-## 🔑 1. Get your Telegram API credentials
-
-1. Go to <https://my.telegram.org> and log in with your phone.
-2. Click **API development tools**.
-3. Create an app — any name/short name works.
-4. Copy the **`api_id`** (a number) and **`api_hash`** (a string).
-
-These belong to **you** — never share them.
-
----
-
-## 🚀 2. Run the backend (FastAPI + Telethon)
-
-```bash
+    └── vite.config.ts
+🚀 Quick Start
+1. Get Telegram API Credentials
+Go to https://my.telegram.org
+Login with your phone number
+Go to API development tools → Create new app
+Copy api_id and api_hash
+2. Backend
 cd backend
 python -m venv .venv
-source .venv/bin/activate           # Windows: .venv\Scripts\activate
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env                # adjust if needed
+cp .env.example .env
 uvicorn main:app --reload --port 8000
-```
-
-The API is now live at <http://localhost:8000> with interactive docs at
-<http://localhost:8000/docs>.
-
----
-
-## 🎨 3. Run the frontend (React + Vite)
-
-```bash
+3. Frontend
 cd frontend
 npm install
 npm run dev
+Open http://localhost:5173
+🔑 Login Flow
+Enter your API ID, API Hash, and Phone Number (+91xxxxxxxxxx)
+Click Connect to Telegram
+Enter the code sent by Telegram
+(Optional) Enter 2FA password if enabled
+Done — Your session is saved securely
+🌍 Deployment
+Service
+Backend
+Frontend
+Recommended
+Railway
+Excellent
+Excellent
+★★★★★
+Fly.io
+Very Good
+Excellent
+★★★★★
+Render
+Good
+Excellent
+★★★★
+Vercel
+Not supported
+Excellent
+-
+Important: Backend needs persistent storage for session files.
+🤖 Telegram Mini App (Optional)
+Turn this into a beautiful Telegram Mini App using BotFather:
+Create a bot with @BotFather
+Use /setmenubutton → Set URL to your deployed frontend (HTTPS required)
+Users can open your vault directly from Telegram
+⚠️ Security & Notes
+Session files give full access to your account → Keep them secure
+For production: Add encryption for sessions + proper user authentication
+Rate limit login endpoints if hosting publicly
+Never share your api_id and api_hash
+�
+
+Made with ❤️ for Telegram Power Users
+Star the repo if you find it useful! ⭐
+�
 ```
-
-Open <http://localhost:5173>.
-
-The frontend talks to `http://localhost:8000` by default. Override via
-`frontend/.env`:
-
-```
-VITE_API_URL=http://localhost:8000
-```
-
----
-
-## 🔐 4. Login flow
-
-1. Enter `API_ID`, `API_HASH`, phone (with `+` country code), optional 2FA.
-2. Click **Connect to Telegram**.
-3. Telegram sends you a login code → the UI shows a code field → paste it.
-4. If you have 2FA enabled and didn't enter it upfront, you'll be prompted.
-5. You're in. The session file is stored at `backend/sessions/<phone>.session`
-   so you won't have to log in again until you click **Logout**.
-
----
-
-## 🤖 5. (Optional) BotFather Mini App
-
-If you want to expose this UI as a Telegram Mini App:
-
-1. Open [@BotFather](https://t.me/BotFather) → `/newbot` → get a bot token.
-2. `/setmenubutton` → choose your bot → label "Open Vault" → URL = your
-   deployed frontend URL (must be HTTPS).
-3. Done — users tap the menu button to open the Mini App.
-
-> Note: when running as a Mini App, users still need to provide their own
-> `API_ID` / `API_HASH` because Telethon acts as a userbot, not as your bot.
-
----
-
-## 🌍 6. Deployment tips
-
-- **Backend**: any host that runs Python long-lived processes works — Fly.io,
-  Railway, Render, a small VPS. Cloudflare Workers / Vercel serverless do
-  **not** work (Telethon needs a persistent connection + file storage).
-- **Frontend**: any static host — Vercel, Netlify, Cloudflare Pages.
-- Set `VITE_API_URL` to your backend's public HTTPS URL.
-- Persist `backend/sessions/` on a real volume (otherwise users re-login on
-  every redeploy).
-- Put the backend behind HTTPS + a real auth layer if exposing publicly.
-
----
-
-## ⚠️ Security notes
-
-- Session files = full account access. Treat `backend/sessions/` like secrets.
-- This template stores sessions in plain `.session` files for simplicity. For
-  production, encrypt them at rest and add real per-user auth in front of the
-  API.
-- Rate-limit `/api/login` if exposed to the internet.
-
----
-
-## 📝 License
-
-MIT — do whatever you like. Built with ❤️ for Telegram power users.
